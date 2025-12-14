@@ -10,6 +10,13 @@ cd MEGAHIT-1.2.9-Linux-x86_64-static/bin
 #prodigal for ORFs prediction
 prodigal -i host_removal/nohost_SRR18673647_contigs.fasta -o prodigal/nohost_SRR18673647.genes -a prodigal/nohost_SRR18673647_proteins.faa -p met
 
+#check protein no. in sample
+to_pro=$(grep -c "^>" prodigal/nohost_SRR18673641_proteins.faa)
+echo $to_pro
+
+#binning by MetaBat2
+metabat2 -i host_removal/nohost_SRR18673647_contigs.fasta -o binning -m 2000
+
 #protein annotation by eggnog-mapper
 source /gss1/env/eggnog-mapper.env
 emapper.py -i prodigal/nohost_SRR18673645_proteins.faa --data_dir /gss1/App_dir/database/emapperdb-5.0.2 -o emap45 --cpu 28
