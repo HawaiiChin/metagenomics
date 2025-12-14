@@ -1,4 +1,11 @@
+#QC&trimm by trimmometic
+java -jar /gss1/home/zlcui/miniconda3/pkgs/trimmomatic-0.40-hdfd78af_0/share/trimmomatic-0.40-0/trimmomatic.jar PE -threads 6 -phred33 SRR18673647_1.fastq SRR18673647_2.fastq trimmomatic_pair/SRR18673647_1_paired.fastq SRR18673647_1_unpaired.fastq trimmomatic_pair/SRR18673647_2_paired.fastq SRR18673647_2_unpaired.fastq ILLUMINACLIP:TruSeq3-PE.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36
 
+#assembly by megahit(most available threads 28)
+tar zvxf MEGAHIT-1.2.9-Linux-x86_64-static.tar.gz
+cd MEGAHIT-1.2.9-Linux-x86_64-static/bin
+./megahit --test
+./MEGAHIT-1.2.9-Linux-x86_64-static/bin/megahit -t 28 -1 trimmomatic_pair/SRR18673641_1_paired.fastq -2 trimmomatic_pair/SRR18673641_2_paired.fastq -o Megahit
 
 #prodigal for ORFs prediction
 prodigal -i host_removal/nohost_SRR18673647_contigs.fasta -o prodigal/nohost_SRR18673647.genes -a prodigal/nohost_SRR18673647_proteins.faa -p met
