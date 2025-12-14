@@ -1,0 +1,8 @@
+
+
+#prodigal for ORFs prediction
+prodigal -i host_removal/nohost_SRR18673647_contigs.fasta -o prodigal/nohost_SRR18673647.genes -a prodigal/nohost_SRR18673647_proteins.faa -p met
+
+#protein annotation by eggnog-mapper
+source /gss1/env/eggnog-mapper.env
+emapper.py -i prodigal/nohost_SRR18673645_proteins.faa --data_dir /gss1/App_dir/database/emapperdb-5.0.2 -o emap45 --cpu 28
