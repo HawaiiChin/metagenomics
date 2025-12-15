@@ -8,7 +8,11 @@ cd MEGAHIT-1.2.9-Linux-x86_64-static/bin
 ./MEGAHIT-1.2.9-Linux-x86_64-static/bin/megahit -t 28 -1 trimmomatic_pair/SRR18673641_1_paired.fastq -2 trimmomatic_pair/SRR18673641_2_paired.fastq -o Megahit
 
 #taxonomic assignment by kraken2
+#contig-based
 kraken2 --db /gss2/database/kraken2_dbs --threads 28 --unclassified-out megahit_out/krakenunc_40 --classified-out megahit_out/classifiedkraken_40 --report megahit_out/40report megahit_out/SRR18673640_contigs.fa
+
+#read-based
+kraken2 --db /gss2/database/kraken2_dbs --threads 28 --unclassified-out megahit_out/krakenunc_43 --classified-out megahit_out/classifiedkraken_43 --report megahit_out/43report --paired SRR18673643_1.fastq SRR18673643_2.fastq
 
 #prodigal for ORFs prediction
 prodigal -i host_removal/nohost_SRR18673647_contigs.fasta -o prodigal/nohost_SRR18673647.genes -a prodigal/nohost_SRR18673647_proteins.faa -p met
